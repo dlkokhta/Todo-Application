@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node build/server.js",
+    "build:watch": "babel src --out-dir build --extensions .ts --copy-files --watch",
+    "build:prod": "babel src --out-dir build --extensions .ts --copy-files --minified"
   },
   "author": "",
   "license": "ISC",
