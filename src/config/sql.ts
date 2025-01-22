@@ -4,14 +4,22 @@ dotenv.config();
 
 const { Pool } = pkg;
 
-const port = process.env.SQL_PORT ? parseInt(process.env.SQL_PORT, 10) : undefined;
+const port = process.env.PGPORT ? parseInt(process.env.PGPORT, 10) : undefined;
 
 const pool = new Pool({
-  database: process.env.SQL_DATABASE,
-  host: process.env.SQL_HOST,
-  user: process.env.SQL_USER,
-  password: process.env.SQL_PASSWORD,
+  database: process.env.PGDATABASE,
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
   port: port,
+});
+
+console.log("Database Config:", {
+  database: process.env.PGDATABASE,
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  port: process.env.PGPORT,
 });
 
 pool.connect()

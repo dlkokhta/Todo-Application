@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: Todo-Application App API
+  description: eCommerce App API
+  version: 0.1.9
+
+servers:
+  - url: 
+    description: production server
+  - url: http://localhost:3001
+    description: local server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+paths:
+  /api/register:
+    post:
+      summary: Create new user
+      tags:
+        - Registration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The username of the user
+                email:
+                  type: string
+                  description: The email of the user
+                password:
+                  type: string
+                  description: The password of the user
+                repeatPassword:
+                  type: string
+                  description: The repeated password of the user
+               
+      responses:
+        "200":
+          description: User successfully added to the database
+        "400":
+          description: Bad request, username is required
+        "500":
+          description: Internal server error
