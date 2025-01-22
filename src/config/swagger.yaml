@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
   title: Todo-Application App API
-  description: eCommerce App API
+  description: Todo-Application App API
   version: 0.1.9
 
 servers:
   - url: 
     description: production server
-  - url: http://localhost:3001
+  - url: http://localhost:3000
     description: local server
 
 components:

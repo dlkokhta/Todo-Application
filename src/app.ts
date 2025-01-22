@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import { initDatabase } from "./database/db.init";
+import swaggerMiddleware from "./middlewears/swagger-middleware.js";
 
 dotenv.config();
 
@@ -13,7 +14,7 @@ app.use(cors());
 
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 
 (async () => {
