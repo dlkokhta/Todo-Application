@@ -5,17 +5,16 @@ info:
   version: 0.1.9
 
 servers:
-  - url: 
-    description: production server
-  - url: http://localhost:3000
+ 
+  - url: http://localhost:3001
     description: local server
 
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+  # securitySchemes:
+  #   bearerAuth:
+  #     type: http
+  #     scheme: bearer
+  #     bearerFormat: JWT
 
 paths:
   /api/register:

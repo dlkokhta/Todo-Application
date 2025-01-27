@@ -1,10 +1,10 @@
 import pkg from "pg";
-import dotenv from "dotenv";
-dotenv.config();
-
 const { Pool } = pkg;
-
+import dotenv from "dotenv";
 const port = process.env.PGPORT ? parseInt(process.env.PGPORT, 10) : undefined;
+
+
+dotenv.config();
 
 const pool = new Pool({
   database: process.env.PGDATABASE,
@@ -13,15 +13,7 @@ const pool = new Pool({
   password: process.env.PGPASSWORD,
   port: port,
 });
-
-console.log("Database Config:", {
-  database: process.env.PGDATABASE,
-  host: process.env.PGHOST,
-  user: process.env.PGUSER,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT,
-});
-
+console.log('Password type:', typeof process.env.PGPASSWORD)
 pool.connect()
   .then(() => {
     console.log("Connected to the database successfully.");

@@ -1,6 +1,11 @@
 import express from "express";
 const todoRouters = express.Router();
-import userRegistrationController from 
+import userRegistration from "../controllers/userRegistration.js"
 
 
-// todoRouters.post("/register", userRegistrationController);
+
+
+todoRouters.post("/register", userRegistration);
+
+
+export default todoRouters;
