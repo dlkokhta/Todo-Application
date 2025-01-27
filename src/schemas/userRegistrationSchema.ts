@@ -1,7 +1,8 @@
 import Joi, { CustomHelpers } from "joi";
 import { newUserTypes } from "types/newUserTypes";
-import userRegistrationModel from "models/userRegistrationModel";
 import { UserRegistrationTypes } from "types/userRegistrationTypes";
+import pool from "config/sql";
+
 
 const ifUserExist =
   (user: UserRegistrationTypes | null) =>
@@ -13,7 +14,9 @@ const ifUserExist =
   };
 
 const userRegistrationSchema = async (data: newUserTypes) => {
-  const user = await userRegistrationModel.findOne({ email: data.email });
+  const emailCheckQuery = "SELECT email FROM users WHERE email = $1";
+  const result = await pool.query(emailCheckQuery, [data.email]);
+  const user = result.rows[0] || null;
 
   return Joi.object<newUserTypes>({
     name: Joi.string().min(3).max(15).required(),
