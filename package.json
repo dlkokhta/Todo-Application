@@ -2,7 +2,7 @@
   "name": "todoapp",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "node build/app.js",
     "build:watch": "babel src --out-dir build --extensions .ts --copy-files --watch",
@@ -21,6 +21,7 @@
     "joi": "^17.13.3",
     "pg": "^8.13.1",
     "swagger-ui-express": "^5.0.1",
+    "uuid": "^11.0.5",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {

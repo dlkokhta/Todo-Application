@@ -4,8 +4,8 @@ import pool from '../config/sql';
 
 const createUsersTableIfNotExist = async () => {
     const userQuery = `
-      CREATE TABLE IF NOT EXISTS users (
-        id UUID PRIMARY KEY,
+       CREATE TABLE IF NOT EXISTS users (
+        
         name VARCHAR(255) NOT NULL,
         
         email VARCHAR(100) UNIQUE NOT NULL,
