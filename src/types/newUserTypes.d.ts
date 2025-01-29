@@ -5,5 +5,5 @@ export interface newUserTypes {
   repeatPassword: string;
   role: string;
   id: string;
-  userVerified: boolean;
+  isVerified: boolean;
 }

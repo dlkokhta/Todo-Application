@@ -1,26 +1,12 @@
-import Joi, { CustomHelpers } from "joi";
+import Joi from "joi";
 import { newUserTypes } from "types/newUserTypes";
-import { UserRegistrationTypes } from "types/userRegistrationTypes";
-import pool from "config/sql";
 
 
-const ifUserExist =
-  (user: UserRegistrationTypes | null) =>
-  (value: string, helpers: CustomHelpers) => {
-    if (user) {
-      return helpers.error("Email already exist!");
-    }
-    return value;
-  };
-
-const userRegistrationSchema = async (data: newUserTypes) => {
-  const emailCheckQuery = "SELECT email FROM users WHERE email = $1";
-  const result = await pool.query(emailCheckQuery, [data.email]);
-  const user = result.rows[0] || null;
-
+const userRegistrationSchema = async () => {
+ 
   return Joi.object<newUserTypes>({
     name: Joi.string().min(3).max(15).required(),
-    email: Joi.string().email().custom(ifUserExist(user)).required(),
+    email: Joi.string().email().required(),
     password: Joi.string().min(8).max(15).required(),
     repeatPassword: Joi.string()
       .valid(Joi.ref("password"))
@@ -29,7 +15,7 @@ const userRegistrationSchema = async (data: newUserTypes) => {
         "any.only": "Passwords must match",
       }),
     role: Joi.string(),
-    userVerified: Joi.string(),
+    isVerified: Joi.string(),
   });
 };
 

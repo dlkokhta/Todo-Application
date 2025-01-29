@@ -5,6 +5,6 @@ export interface UserRegistrationTypes {
   repeatPassword: string;
   role: string;
   id: string;
-  userVerified: boolean;
+  isVerified: boolean;
   otp: string;
 }
