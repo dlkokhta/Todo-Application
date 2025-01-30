@@ -20,8 +20,7 @@ const userRegistrationController = async (req: Request, res: Response) => {
       return res.status(400).send({ message: "Email already exists" });
     }
 
-    const validator = await userRegistrationSchema();
-    const { value, error } = validator.validate(userData);
+    const { value, error } = userRegistrationSchema.validate(userData);
 
     if (error) {
       client.release();
@@ -43,11 +42,9 @@ const userRegistrationController = async (req: Request, res: Response) => {
       name:name,
       email:email,
       password:hashedPassword,
-      isVerified: true 
+      isVerified: false 
     };
       
-      
-
     const insertResult = await client.query(
       'INSERT INTO users (id, name, email, password, isVerified) VALUES ($1, $2, $3, $4, $5)',
       [newUser.id, newUser.name, newUser.email, newUser.password,  newUser.isVerified]
