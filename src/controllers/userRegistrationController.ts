@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import userRegistrationSchema from "schemas/userRegistrationSchema"; // Validation schema
-import { newUserTypes } from "types/newUserTypes";
+import userRegistrationSchema from "schemas/userRegistrationSchema"; 
+import { UserRegistrationTypes } from "types/userRegistrationTypes";
 // import CryptoJS from "crypto-js";
 // import { sensitiveHeaders } from "../email/edge.js"; // For sending verification emails
 import pool from "../config/sql"; // PostgreSQL pool for database queries
@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const userRegistrationController = async (req: Request, res: Response) => {
   try {
-    const userData: newUserTypes = req.body;
+    const userData: UserRegistrationTypes = req.body;
     const client = await pool.connect();
 
     const emailCheckQuery = "SELECT email FROM users WHERE email = $1";
